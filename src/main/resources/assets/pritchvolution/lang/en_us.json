@@ -1,0 +1,13 @@
+{
+  "itemGroup.pritchvolution": "Example Mod Tab",
+  "block.pritchvolution.example_block": "Example Block",
+  "item.pritchvolution.example_item": "Example Item",
+
+  "pritchvolution.configuration.title": "Pritchvolution Configs",
+  "pritchvolution.configuration.section.pritchvolution.common.toml": "Pritchvolution Configs",
+  "pritchvolution.configuration.section.pritchvolution.common.toml.title": "Pritchvolution Configs",
+  "pritchvolution.configuration.items": "Item List",
+  "pritchvolution.configuration.logDirtBlock": "Log Dirt Block",
+  "pritchvolution.configuration.magicNumberIntroduction": "Magic Number Text",
+  "pritchvolution.configuration.magicNumber": "Magic Number"
+}
