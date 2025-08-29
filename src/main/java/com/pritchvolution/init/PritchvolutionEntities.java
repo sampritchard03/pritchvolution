@@ -2,6 +2,7 @@ package com.pritchvolution.init;
 
 import com.pritchvolution.Pritchvolution;
 import com.pritchvolution.entity.PritchanimalEntity;
+import com.pritchvolution.entity.RandomPritchanimalGeneratorEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;

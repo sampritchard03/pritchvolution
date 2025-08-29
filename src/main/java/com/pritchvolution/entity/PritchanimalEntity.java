@@ -112,6 +112,9 @@ public class PritchanimalEntity extends Animal {
     public static final EntityDataAccessor<Boolean> DATA_hasNose = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> DATA_hasEars = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Boolean> DATA_hasHorns = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Integer> DATA_arm_type = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_leg_type = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Boolean> DATA_hasTail = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.BOOLEAN);
     public final AnimationState animationState0 = new AnimationState();
 
     public PritchanimalEntity(EntityType<PritchanimalEntity> type, Level world) {
@@ -204,6 +207,9 @@ public class PritchanimalEntity extends Animal {
         builder.define(DATA_hasNose, false);
         builder.define(DATA_hasEars, false);
         builder.define(DATA_hasHorns, false);
+        builder.define(DATA_arm_type, 0);
+        builder.define(DATA_leg_type, 0);
+        builder.define(DATA_hasTail, false);
     }
 
     @Override
@@ -316,6 +322,9 @@ public class PritchanimalEntity extends Animal {
         compound.putBoolean("DatahasNose", this.entityData.get(DATA_hasNose));
         compound.putBoolean("DatahasEars", this.entityData.get(DATA_hasEars));
         compound.putBoolean("DatahasHorns", this.entityData.get(DATA_hasHorns));
+        compound.putBoolean("DatahasTail", this.entityData.get(DATA_hasTail));
+        compound.putInt("Dataarm_type", this.entityData.get(DATA_arm_type));
+        compound.putInt("Dataleg_type", this.entityData.get(DATA_leg_type));
     }
 
     @Override
@@ -483,6 +492,12 @@ public class PritchanimalEntity extends Animal {
             this.entityData.set(DATA_hasEars, compound.getBoolean("DatahasEars"));
         if (compound.contains("DatahasHorns"))
             this.entityData.set(DATA_hasHorns, compound.getBoolean("DatahasHorns"));
+        if (compound.contains("DatahasTail"))
+            this.entityData.set(DATA_hasTail, compound.getBoolean("DatahasTail"));
+        if (compound.contains("Dataarm_type"))
+            this.entityData.set(DATA_arm_type, compound.getInt("Dataarm_type"));
+        if (compound.contains("Dataleg_type"))
+            this.entityData.set(DATA_leg_type, compound.getInt("Dataleg_type"));
     }
 
     @Override
@@ -554,7 +569,163 @@ public class PritchanimalEntity extends Animal {
     public static void setupBaby(PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father) {
         if (baby == null || mother == null || father == null)
             return;
-        //baby setup procedures 1 and 2
+        if (baby.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED)) {
+            baby.getAttribute(Attributes.MOVEMENT_SPEED)
+                    .setBaseValue(Math.random()
+                            * ((mother.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? mother.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0)
+                            - (father.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? father.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0))
+                            + (father.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? father.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0));
+        }
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Arm_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_x))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_x))))));
+        {
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Arm_y,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_y)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_y))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_y))))));
+        }
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Arm_z,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_z)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_z))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_z))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Leg_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_x))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Leg_y,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Leg_z,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_z)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_z))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_z))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Body_x,
+                     (int) (Math.random()
+                             * ((mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)
+                             - (father.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x))
+                             + (mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Neck_x,
+                (int) (Math.random()
+                        * ((mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)
+                        - (father.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x))
+                        + (mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Arm_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x))
+                            + (mother.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Body_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Body_y,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Body_z,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Head_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_x))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Head_y,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_y)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_y))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_y))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Head_z,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_z)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_z))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Head_z))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Neck_x,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_x)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_x))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_x))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Neck_y,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_y)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_y))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_y))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_SCALE_Neck_z,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_z)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_z))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_z))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_hue,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_hue)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_hue))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_hue))))));
+            baby.getEntityData().set(PritchanimalEntity.DATA_saturation,
+                    (int) (Math.random()
+                            * ((mother.getEntityData().get(PritchanimalEntity.DATA_saturation)
+                            - (father.getEntityData().get(PritchanimalEntity.DATA_saturation))
+                            + (father.getEntityData().get(PritchanimalEntity.DATA_saturation))))));
+        if (entity instanceof PritchanimalEntity _datEntSetI)
+            _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_brightness,
+                    (int) (Math.random()
+                            * ((mother instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_brightness) : 0)
+                            - (father instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_brightness) : 0))
+                            + (father instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_brightness) : 0)));
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasArms, (mother instanceof PritchanimalEntity _datEntL88 && _datEntL88.getEntityData().get(PritchanimalEntity.DATA_hasArms)));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasArms, (father instanceof PritchanimalEntity _datEntL90 && _datEntL90.getEntityData().get(PritchanimalEntity.DATA_hasArms)));
+        }
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasLegs, (mother instanceof PritchanimalEntity _datEntL92 && _datEntL92.getEntityData().get(PritchanimalEntity.DATA_hasLegs)));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasLegs, (father instanceof PritchanimalEntity _datEntL94 && _datEntL94.getEntityData().get(PritchanimalEntity.DATA_hasLegs)));
+        }
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasNeck, (mother instanceof PritchanimalEntity _datEntL96 && _datEntL96.getEntityData().get(PritchanimalEntity.DATA_hasNeck)));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasNeck, (father instanceof PritchanimalEntity _datEntL98 && _datEntL98.getEntityData().get(PritchanimalEntity.DATA_hasNeck)));
+        }
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasHead, (mother instanceof PritchanimalEntity _datEntL100 && _datEntL100.getEntityData().get(PritchanimalEntity.DATA_hasHead)));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetL)
+                _datEntSetL.getEntityData().set(PritchanimalEntity.DATA_hasHead, (father instanceof PritchanimalEntity _datEntL102 && _datEntL102.getEntityData().get(PritchanimalEntity.DATA_hasHead)));
+        }
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_arm_type, (int) (father instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_arm_type) : 0));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_arm_type, (int) (mother instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_arm_type) : 0));
+        }
+        if (Math.random() > 0.5) {
+            if (entity instanceof PritchanimalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_leg_type, (int) (father instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_leg_type) : 0));
+        } else {
+            if (entity instanceof PritchanimalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_leg_type, (int) (mother instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_leg_type) : 0));
+        }
     }
 
     @Override
