@@ -530,7 +530,7 @@ public class PritchanimalEntity extends Animal {
         if (entity == null)
             return;
 
-        if (Math.random() < 0.001) {
+        if (Math.random() < 0.0001) {
             entity.getEntityData().set(PritchanimalEntity.DATA_fedTimer, 200);
         }
 

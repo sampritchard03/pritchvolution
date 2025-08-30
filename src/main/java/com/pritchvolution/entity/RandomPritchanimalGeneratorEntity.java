@@ -30,6 +30,7 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import oshi.jna.platform.mac.SystemB;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class RandomPritchanimalGeneratorEntity extends Monster {
     public RandomPritchanimalGeneratorEntity(EntityType<RandomPritchanimalGeneratorEntity> type, Level world) {
@@ -105,9 +106,9 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Head_y, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Head_z, pritchanimal, 50, 150);
 
-            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_x, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) * 0.5), (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x)));
+            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_x, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) * 0.5), pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x));
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_y, pritchanimal, 50, 200);
-            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_z, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z) * 0.5), (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z)));
+            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_z, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z) * 0.25), (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) * 0.5));
 
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_roamType, Mth.nextInt(RandomSource.create(), 0, 3));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_hue, Mth.nextInt(RandomSource.create(), 0, 255));
@@ -167,8 +168,13 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Dolphintail_y, (int) Mth.nextDouble(RandomSource.create(), 50, 100));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Dolphintail_z, (int) Mth.nextDouble(RandomSource.create(), 50, 200));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_POSITION_Root_y, (int) ((-6) * (1 - (float) (entity instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y) : 0) / 100)));
-            if (pritchanimal.getAttributes().hasAttribute(Attributes.SCALE))
-                pritchanimal.getAttribute(Attributes.SCALE).setBaseValue((Mth.nextDouble(RandomSource.create(), 0.5, 1.5)));
+            if (pritchanimal.getAttributes().hasAttribute(Attributes.SCALE)) {
+                Random random = new Random();
+                double desiredMean = 1.0;
+                double desiredStdDev = 0.25;
+                pritchanimal.getAttribute(Attributes.SCALE).setBaseValue(random.nextGaussian() * desiredStdDev + desiredMean);
+            }
+
             RandomSkin = Math.random();
             if (RandomSkin > 0.8) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_skin, "cow");
