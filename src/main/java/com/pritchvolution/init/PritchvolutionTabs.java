@@ -16,7 +16,6 @@ public class PritchvolutionTabs {
         if (tabData.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             tabData.accept(PritchvolutionItems.PRITCHANIMAL_SPAWN_EGG.get());
             tabData.accept(PritchvolutionItems.RANDOM_PRITCHANIMAL_GENERATOR_SPAWN_EGG.get());
-            tabData.accept(PritchvolutionItems.HUMAN_PRITCHANIMAL_GENERATOR_SPAWN_EGG.get());
         }
     }
 }

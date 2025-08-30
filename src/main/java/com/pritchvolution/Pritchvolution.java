@@ -52,18 +52,34 @@ public class Pritchvolution {
     public static final Logger LOGGER = LogManager.getLogger(Pritchvolution.class);
     public static final String MODID = "pritchvolution";
 
-    public Pritchvolution(IEventBus modEventBus) {
+    public Pritchvolution(IEventBus modEventBus, ModContainer modContainer) {
         // Start of user code block mod constructor
         // End of user code block mod constructor
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::registerNetworking);
+        modEventBus.addListener(this::commonSetup);
 
         PritchvolutionItems.REGISTRY.register(modEventBus);
         PritchvolutionEntities.REGISTRY.register(modEventBus);
         PritchvolutionTabs.REGISTRY.register(modEventBus);
 
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
         // Start of user code block mod init
         // End of user code block mod init
+    }
+
+    private void commonSetup(FMLCommonSetupEvent event) {
+        // Some common setup code
+        LOGGER.info("HELLO FROM COMMON SETUP");
+
+        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
+            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
+        }
+
+        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
+
+        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // Start of user code block mod methods

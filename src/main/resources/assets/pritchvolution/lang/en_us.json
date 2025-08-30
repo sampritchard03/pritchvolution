@@ -9,5 +9,12 @@
   "pritchvolution.configuration.items": "Item List",
   "pritchvolution.configuration.logDirtBlock": "Log Dirt Block",
   "pritchvolution.configuration.magicNumberIntroduction": "Magic Number Text",
-  "pritchvolution.configuration.magicNumber": "Magic Number"
+  "pritchvolution.configuration.magicNumber": "Magic Number",
+
+  "item.pritchvolution.pritchanimal_spawn_egg": "Pritch Animal Spawn Egg",
+  "entity.pritchvolution.pritchanimal": "Pritch Animal",
+  "item.pritchvolution.random_pritchanimal_generator_spawn_egg": "Random Pritchanimal Generator Spawn Egg",
+  "entity.pritchvolution.random_pritchanimal_generator": "Random Pritchanimal Generator",
+  "entity.pritchvolution.human_pritchanimal_generator": "Human Pritchanimal Generator",
+  "item.pritchvolution.human_pritchanimal_generator_spawn_egg": "Human Pritchanimal Generator Spawn Egg"
 }
