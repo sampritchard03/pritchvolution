@@ -96,9 +96,9 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Leg_x, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Leg_y, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Leg_z, pritchanimal, 50, 150);
-            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Body_x, pritchanimal, 0, 90);
-            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Neck_x, pritchanimal, 0, 90);
-            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Arm_x, pritchanimal, -90, 0);
+            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Body_x, pritchanimal, 0, 900);
+            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Neck_x, pritchanimal, 0, 900);
+            setRandomInRange(PritchanimalEntity.DATA_ROTATION_Arm_x, pritchanimal, -900, 0);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Body_x, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Body_y, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Body_z, pritchanimal, 50, 150);
@@ -121,10 +121,10 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             } else if (legRand > 0.9) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_leg_type, 2);//creeper legs
             }
-            if (Math.random() > 0.9) {
+            if (Math.random() > 0.5) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_neck_type, 1);
             }
-            if (Math.random() > 0.01) {
+            if (Math.random() > 0.1) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_head_type, 1);
             }
 
@@ -135,7 +135,7 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Nose_z, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Snout_x, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Snout_z, (int) Mth.nextDouble(RandomSource.create(), 100, 300));
-            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Snout_x, (int) Mth.nextDouble(RandomSource.create(), 0, 30));
+            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Snout_x, (int) Mth.nextDouble(RandomSource.create(), 0, 300));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Beak_x, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Beak_y, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Beak_z, (int) Mth.nextDouble(RandomSource.create(), 50, 300));
@@ -143,13 +143,13 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Ear_x, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Ear_y, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Ear_z, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
-            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_POSITION_Ear_y, Mth.nextInt(RandomSource.create(), -5, 0));
+            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_POSITION_Ear_y, Mth.nextInt(RandomSource.create(), -500, 0));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Bunnyear_x, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Bunnyear_y, (int) Mth.nextDouble(RandomSource.create(), 25, 100));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Bunnyear_z, (int) Mth.nextDouble(RandomSource.create(), 100, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Flopear_x, (int) Mth.nextDouble(RandomSource.create(), 25, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Flopear_z, (int) Mth.nextDouble(RandomSource.create(), 25, 150));
-            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Flopear_z, (int) Mth.nextDouble(RandomSource.create(), -90, 90));
+            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_ROTATION_Flopear_z, (int) Mth.nextDouble(RandomSource.create(), -900, 900));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_horn_type, Mth.nextInt(RandomSource.create(), 0, 3));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Cowhorn_x, (int) Mth.nextDouble(RandomSource.create(), 100, 200));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Cowhorn_y, (int) Mth.nextDouble(RandomSource.create(), 50, 200));
@@ -167,7 +167,6 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Dolphintail_x, (int) Mth.nextDouble(RandomSource.create(), 50, 150));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Dolphintail_y, (int) Mth.nextDouble(RandomSource.create(), 50, 100));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_SCALE_Dolphintail_z, (int) Mth.nextDouble(RandomSource.create(), 50, 200));
-            pritchanimal.getEntityData().set(PritchanimalEntity.DATA_POSITION_Root_y, (int) ((-6) * (1 - (float) (entity instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y) : 0) / 100)));
             if (pritchanimal.getAttributes().hasAttribute(Attributes.SCALE)) {
                 Random random = new Random();
                 double desiredMean = 1.0;

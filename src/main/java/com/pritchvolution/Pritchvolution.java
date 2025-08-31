@@ -2,7 +2,6 @@ package com.pritchvolution;
 
 import com.mojang.logging.LogUtils;
 
-import com.pritchvolution.entity.PritchanimalEntity;
 import com.pritchvolution.init.PritchvolutionEntities;
 import com.pritchvolution.init.PritchvolutionItems;
 import com.pritchvolution.init.PritchvolutionTabs;
@@ -13,11 +12,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,7 +31,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.util.thread.SidedThreadGroups;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -123,27 +121,4 @@ public class Pritchvolution {
         actions.forEach(e -> e.getA().run());
         workQueue.removeAll(actions);
     }
-
-    @SubscribeEvent
-    public static void onRightClickEntity(PlayerInteractEvent.EntityInteract event) {
-        if (event.getHand() != InteractionHand.MAIN_HAND)
-            return;
-        Entity entity = event.getTarget();
-        Entity sourceentity = event.getEntity()   ;
-        if (entity instanceof PritchanimalEntity) {
-            if ((entity instanceof PritchanimalEntity _datEntI ? _datEntI.getEntityData().get(PritchanimalEntity.DATA_fedTimer) : 0) < 0) {
-                if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.WHEAT) {
-                    (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
-                    if (entity instanceof PritchanimalEntity _datEntSetI)
-                        _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_fedTimer, 200);
-                }
-                if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == Items.WHEAT) {
-                    (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).shrink(1);
-                    if (entity instanceof PritchanimalEntity _datEntSetI)
-                        _datEntSetI.getEntityData().set(PritchanimalEntity.DATA_fedTimer, 200);
-                }
-            }
-        }
-    }
-
 }

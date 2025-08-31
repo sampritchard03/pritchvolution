@@ -174,7 +174,7 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                 if (entity.getEntityData().get(PritchanimalEntity.DATA_nose_type) == 2) {
                     scaleSnoutX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Snout_x) / 100;
                     scaleSnoutZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Snout_z) / 100;
-                    rotationSnoutX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Snout_x) / 100;
+                    rotationSnoutX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Snout_x) / 10;
                 }
                 //Beak offset
                 float scaleBeakX = 0.0F;
@@ -212,7 +212,7 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                 if (entity.getEntityData().get(PritchanimalEntity.DATA_ears_type) == 3) {
                     scaleFlopearX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Flopear_x) / 100;
                     scaleFlopearZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Flopear_z) / 100;
-                    rotationFlopearZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Flopear_z) / 100;
+                    rotationFlopearZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Flopear_z) / 10;
                 }
                 //Cowhorn offset
                 float scaleCowhornX = 0.0F;
@@ -311,10 +311,10 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                 AnimationDefinition armslegstest = AnimationDefinition.Builder.withLength(0.0F).looping()
                         .addAnimation("neck",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("body",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("left_flopear",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
                                         new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, rotationFlopearZ), AnimationChannel.Interpolations.LINEAR)))
@@ -327,16 +327,16 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                                                 AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("left_arm",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("right_arm",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Arm_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("right_frontleg",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("left_frontleg",
                                 new AnimationChannel(AnimationChannel.Targets.ROTATION,
-                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/100, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
+                                        new Keyframe(0.0F, KeyframeAnimations.degreeVec((float) entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("body",
                                 new AnimationChannel(AnimationChannel.Targets.SCALE,
                                         new Keyframe(0.0F,
