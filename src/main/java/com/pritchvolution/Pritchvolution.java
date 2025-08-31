@@ -5,21 +5,28 @@ import com.mojang.logging.LogUtils;
 import com.pritchvolution.init.PritchvolutionEntities;
 import com.pritchvolution.init.PritchvolutionItems;
 import com.pritchvolution.init.PritchvolutionTabs;
+import net.minecraft.ResourceLocationException;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -30,6 +37,8 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.util.thread.SidedThreadGroups;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
@@ -43,7 +52,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -51,6 +62,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Pritchvolution {
     public static final Logger LOGGER = LogManager.getLogger(Pritchvolution.class);
     public static final String MODID = "pritchvolution";
+
+    public static final ResourceKey<Level> EXAMPLE_CONFIGURED_FEATURE = ResourceKey.create(
+            Registries.DIMENSION,
+            ResourceLocation.fromNamespaceAndPath(MODID, "example_configured_feature")
+    );
 
     public Pritchvolution(IEventBus modEventBus, ModContainer modContainer) {
         // Start of user code block mod constructor

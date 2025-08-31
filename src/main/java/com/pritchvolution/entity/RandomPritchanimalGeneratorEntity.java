@@ -121,10 +121,10 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             } else if (legRand > 0.9) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_leg_type, 2);//creeper legs
             }
-            if (Math.random() > 0.9) {
+            if (Math.random() > 0.5) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_neck_type, 1);
             }
-            if (Math.random() > 0.01) {
+            if (Math.random() > 0.1) {
                 pritchanimal.getEntityData().set(PritchanimalEntity.DATA_head_type, 1);
             }
 
