@@ -2,6 +2,7 @@ package com.pritchvolution;
 
 import com.mojang.logging.LogUtils;
 
+import com.pritchvolution.init.PritchvolutionCommands;
 import com.pritchvolution.init.PritchvolutionEntities;
 import com.pritchvolution.init.PritchvolutionItems;
 import com.pritchvolution.init.PritchvolutionTabs;
@@ -78,6 +79,7 @@ public class Pritchvolution {
         PritchvolutionItems.REGISTRY.register(modEventBus);
         PritchvolutionEntities.REGISTRY.register(modEventBus);
         PritchvolutionTabs.REGISTRY.register(modEventBus);
+        PritchvolutionCommands.init();
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 

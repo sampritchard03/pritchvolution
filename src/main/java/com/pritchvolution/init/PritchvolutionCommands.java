@@ -2,17 +2,18 @@ package com.pritchvolution.init;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import dev.architectury.event.events.common.CommandRegistrationEvent;
 
 import java.util.Random;
 
 public class PritchvolutionCommands {
-    /*
     public static void init() {
         String warp = "warp";
-        CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(literal(warp)
+        /*
+        CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register((warp)
                 .requires(source -> source.hasPermissionLevel(2))
                 .then(
-                        CommandManager.literal("random").executes((context -> {
+                        CommandM.literal("random").executes((context -> {
                             final long text = InfinityMethods.getRandomSeed(new Random());
                             WarpLogic.requestWarpById(context, text);
                             return 1;
@@ -40,7 +41,7 @@ public class PritchvolutionCommands {
                 .then(
                         argument("text", StringArgumentType.string())
                                 .executes(context -> {
-                                    final String text = StringArgumentType.getString( context, "text");
+                                    final String text = StringArgumentType.getString(context, "text");
                                     WarpLogic.requestWarpByText(context, text);
                                     return 1;
                                 })
@@ -51,7 +52,7 @@ public class PritchvolutionCommands {
                     WarpLogic.respawnAlive(context.getSource().getPlayer());
                     return 1;
                 })));
-    }
 
-     */
+         */
+    }
 }
