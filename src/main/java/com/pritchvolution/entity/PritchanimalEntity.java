@@ -587,6 +587,7 @@ public class PritchanimalEntity extends Animal {
         setBabyData(PritchanimalEntity.DATA_SCALE_Leg_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Leg_y, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Leg_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_ROTATION_Body_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_ROTATION_Neck_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_ROTATION_Arm_x, baby, mother, father);
@@ -596,6 +597,25 @@ public class PritchanimalEntity extends Animal {
         setBabyData(PritchanimalEntity.DATA_SCALE_Head_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Head_y, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Head_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_y, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_y, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_y, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_POSITION_Ear_y, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_y, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_x, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_z, baby, mother, father);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Flopear_z, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Neck_x, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Neck_y, baby, mother, father);
         setBabyData(PritchanimalEntity.DATA_SCALE_Neck_z, baby, mother, father);
@@ -606,6 +626,8 @@ public class PritchanimalEntity extends Animal {
         setBabyHas(PritchanimalEntity.DATA_arm_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_leg_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_head_type, 0.5, baby, mother, father);
+        setBabyHas(PritchanimalEntity.DATA_nose_type, 0.5, baby, mother, father);
+        setBabyHas(PritchanimalEntity.DATA_ears_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_neck_type, 0.5, baby, mother, father);
     }
 
