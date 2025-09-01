@@ -106,9 +106,9 @@ public class RandomPritchanimalGeneratorEntity extends Monster {
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Head_y, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Head_z, pritchanimal, 50, 150);
 
-            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_x, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) * 0.5), pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x));
+            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_x, pritchanimal, 50, 150);
             setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_y, pritchanimal, 50, 200);
-            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_z, pritchanimal, (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_z) * 0.25), (int) Math.floor(pritchanimal.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) * 0.5));
+            setRandomInRange(PritchanimalEntity.DATA_SCALE_Neck_z, pritchanimal, 50, 150);
 
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_roamType, Mth.nextInt(RandomSource.create(), 0, 3));
             pritchanimal.getEntityData().set(PritchanimalEntity.DATA_hue, Mth.nextInt(RandomSource.create(), 0, 255));
