@@ -510,20 +510,21 @@ public class PritchanimalEntity extends Animal {
         float RotationBodyX = 0;
         if (!entity.getEntityData().get(PritchanimalEntity.DATA_isInitialized)) {
             entity.getEntityData().set(PritchanimalEntity.DATA_isInitialized, true);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Root_y, (int) ((-6) * (1 - (float) (entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y) / 100))) * 100);
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Root_y, (int) (((-6) * (1 - (float) (entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y) / 100))) * 100));
             ScaleNeckY = 0;
             ScaleBodyY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y) / 100;
             if (entity.getEntityData().get(PritchanimalEntity.DATA_neck_type) != 0) {
                 ScaleNeckY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_y) / 100;
             }
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_y, (int) (8 * ScaleNeckY * Math.cos(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_z, (int) ((-10) * ScaleNeckY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_y, (int) (12 * (ScaleBodyY - 1) - 12 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_z, (int) ((-16) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_y, (int) (10 * (ScaleBodyY - 1) - 10 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_z, (int) ((-10) * ScaleBodyY * Math.sin(Math.toRadians((float   )entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100);
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Frontleg_y, (int) ((12 * (ScaleBodyY - 1) * Math.cos(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10) - 10 * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10)))) * 100));
-            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Frontleg_z, (int) (((-1) * (10 + 12 * (ScaleBodyY - 1)) * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_y, (int) ((8 * ScaleNeckY * Math.cos(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_z, (int) (((-10) * ScaleNeckY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100));
+            ScaleBodyY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y) / 100;
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_y, (int) ((12 * (ScaleBodyY - 1) - 12 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_z, (int) (((-16) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_y, (int) ((10 * (ScaleBodyY - 1) - 10 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_z, (int) (((-10) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Frontleg_y, (int) ((10 * (ScaleBodyY - 1) - 10 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Frontleg_z, (int) (((-10) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
         }
     }
 
