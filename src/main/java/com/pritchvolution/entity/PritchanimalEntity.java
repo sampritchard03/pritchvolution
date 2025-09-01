@@ -319,7 +319,7 @@ public class PritchanimalEntity extends Animal {
         compound.putInt("Dataarm_type", this.entityData.get(DATA_arm_type));
         compound.putInt("Dataleg_type", this.entityData.get(DATA_leg_type));
         compound.putInt("Dataarm_type", this.entityData.get(DATA_head_type));
-        compound.putInt("Dataleg_type", this.entityData.get(DATA_neck_type));
+        compound.putInt("Dataneck_type", this.entityData.get(DATA_neck_type));
     }
 
     @Override
