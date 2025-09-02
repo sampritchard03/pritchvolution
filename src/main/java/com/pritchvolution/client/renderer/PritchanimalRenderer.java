@@ -251,10 +251,12 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                     scaleNeckZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_z) / 100;
                 }
                 //Arm offset
+                float positionArmX = 0.0F;
                 float scaleArmX = 0.0F;
                 float scaleArmY = 0.0F;
                 float scaleArmZ = 0.0F;
                 if (entity.getEntityData().get(PritchanimalEntity.DATA_arm_type) == 1) {
+                    positionArmX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_x) / 100;
                     scaleArmX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_x) / 100;
                     scaleArmY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_y) / 100;
                     scaleArmZ = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_z) / 100;
@@ -517,11 +519,11 @@ public class PritchanimalRenderer extends MobRenderer<PritchanimalEntity, Modelp
                                         new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, positionEarY, 0.0F), AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("right_arm",
                                 new AnimationChannel(AnimationChannel.Targets.POSITION,
-                                        new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_y)/100, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_z)/100),
+                                        new Keyframe(0.0F, KeyframeAnimations.posVec(-positionArmX, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_y)/100, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_z)/100),
                                                 AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("left_arm",
                                 new AnimationChannel(AnimationChannel.Targets.POSITION,
-                                        new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_y)/100, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_z)/100),
+                                        new Keyframe(0.0F, KeyframeAnimations.posVec(positionArmX, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_y)/100, (float) entity.getEntityData().get(PritchanimalEntity.DATA_POSITION_Arm_z)/100),
                                                 AnimationChannel.Interpolations.LINEAR)))
                         .addAnimation("left_frontleg",
                                 new AnimationChannel(AnimationChannel.Targets.POSITION,

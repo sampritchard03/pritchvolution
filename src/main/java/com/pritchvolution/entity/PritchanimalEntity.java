@@ -40,6 +40,8 @@ public class PritchanimalEntity extends Animal {
     public static final EntityDataAccessor<Integer> DATA_SCALE_Leg_y = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_SCALE_Leg_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_ROTATION_Arm_x = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_ROTATION_Arm_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_ROTATION_Leg_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_ROTATION_Body_x = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_SCALE_Body_x = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_SCALE_Body_y = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
@@ -49,6 +51,7 @@ public class PritchanimalEntity extends Animal {
     public static final EntityDataAccessor<Integer> DATA_SCALE_Head_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_POSITION_Head_y = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_POSITION_Head_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_POSITION_Arm_x = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_POSITION_Arm_y = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_POSITION_Arm_z = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_nose_type = SynchedEntityData.defineId(PritchanimalEntity.class, EntityDataSerializers.INT);
@@ -132,6 +135,8 @@ public class PritchanimalEntity extends Animal {
         builder.define(DATA_SCALE_Leg_y, 100);
         builder.define(DATA_SCALE_Leg_z, 100);
         builder.define(DATA_ROTATION_Arm_x, 0);
+        builder.define(DATA_ROTATION_Arm_z, 0);
+        builder.define(DATA_ROTATION_Leg_z, 0);
         builder.define(DATA_ROTATION_Body_x, 0);
         builder.define(DATA_SCALE_Body_x, 100);
         builder.define(DATA_SCALE_Body_y, 100);
@@ -141,6 +146,7 @@ public class PritchanimalEntity extends Animal {
         builder.define(DATA_SCALE_Head_z, 100);
         builder.define(DATA_POSITION_Head_y, 0);
         builder.define(DATA_POSITION_Head_z, 0);
+        builder.define(DATA_POSITION_Arm_x, 0);
         builder.define(DATA_POSITION_Arm_y, 0);
         builder.define(DATA_POSITION_Arm_z, 0);
         builder.define(DATA_nose_type, 0);
@@ -248,6 +254,8 @@ public class PritchanimalEntity extends Animal {
         compound.putInt("DataSCALE_Leg_y", this.entityData.get(DATA_SCALE_Leg_y));
         compound.putInt("DataSCALE_Leg_z", this.entityData.get(DATA_SCALE_Leg_z));
         compound.putInt("DataROTATION_Arm_x", this.entityData.get(DATA_ROTATION_Arm_x));
+        compound.putInt("DataROTATION_Arm_z", this.entityData.get(DATA_ROTATION_Arm_z));
+        compound.putInt("DataROTATION_Leg_z", this.entityData.get(DATA_ROTATION_Leg_z));
         compound.putInt("DataROTATION_Body_x", this.entityData.get(DATA_ROTATION_Body_x));
         compound.putInt("DataSCALE_Body_x", this.entityData.get(DATA_SCALE_Body_x));
         compound.putInt("DataSCALE_Body_y", this.entityData.get(DATA_SCALE_Body_y));
@@ -257,6 +265,7 @@ public class PritchanimalEntity extends Animal {
         compound.putInt("DataSCALE_Head_z", this.entityData.get(DATA_SCALE_Head_z));
         compound.putInt("DataPOSITION_Head_y", this.entityData.get(DATA_POSITION_Head_y));
         compound.putInt("DataPOSITION_Head_z", this.entityData.get(DATA_POSITION_Head_z));
+        compound.putInt("DataPOSITION_Arm_x", this.entityData.get(DATA_POSITION_Arm_x));
         compound.putInt("DataPOSITION_Arm_y", this.entityData.get(DATA_POSITION_Arm_y));
         compound.putInt("DataPOSITION_Arm_z", this.entityData.get(DATA_POSITION_Arm_z));
         compound.putInt("Datanose_type", this.entityData.get(DATA_nose_type));
@@ -341,6 +350,10 @@ public class PritchanimalEntity extends Animal {
             this.entityData.set(DATA_SCALE_Leg_z, compound.getInt("DataSCALE_Leg_z"));
         if (compound.contains("DataROTATION_Arm_x"))
             this.entityData.set(DATA_ROTATION_Arm_x, compound.getInt("DataROTATION_Arm_x"));
+        if (compound.contains("DataROTATION_Arm_z"))
+            this.entityData.set(DATA_ROTATION_Arm_z, compound.getInt("DataROTATION_Arm_z"));
+        if (compound.contains("DataROTATION_Leg_z"))
+            this.entityData.set(DATA_ROTATION_Leg_z, compound.getInt("DataROTATION_Leg_z"));
         if (compound.contains("DataROTATION_Body_x"))
             this.entityData.set(DATA_ROTATION_Body_x, compound.getInt("DataROTATION_Body_x"));
         if (compound.contains("DataSCALE_Body_x"))
@@ -359,6 +372,8 @@ public class PritchanimalEntity extends Animal {
             this.entityData.set(DATA_POSITION_Head_y, compound.getInt("DataPOSITION_Head_y"));
         if (compound.contains("DataPOSITION_Head_z"))
             this.entityData.set(DATA_POSITION_Head_z, compound.getInt("DataPOSITION_Head_z"));
+        if (compound.contains("DataPOSITION_Arm_x"))
+            this.entityData.set(DATA_POSITION_Arm_x, compound.getInt("DataPOSITION_Arm_x"));
         if (compound.contains("DataPOSITION_Arm_y"))
             this.entityData.set(DATA_POSITION_Arm_y, compound.getInt("DataPOSITION_Arm_y"));
         if (compound.contains("DataPOSITION_Arm_z"))
@@ -482,9 +497,9 @@ public class PritchanimalEntity extends Animal {
         if (compound.contains("Dataleg_type"))
             this.entityData.set(DATA_leg_type, compound.getInt("Dataleg_type"));
         if (compound.contains("Datahead_type"))
-            this.entityData.set(DATA_arm_type, compound.getInt("Datahead_type"));
+            this.entityData.set(DATA_head_type, compound.getInt("Datahead_type"));
         if (compound.contains("Dataneck_type"))
-            this.entityData.set(DATA_leg_type, compound.getInt("Dataneck_type"));
+            this.entityData.set(DATA_neck_type, compound.getInt("Dataneck_type"));
     }
 
     @Override
@@ -505,22 +520,26 @@ public class PritchanimalEntity extends Animal {
     public static void initialize(LevelAccessor world, double x, double y, double z, PritchanimalEntity entity) {
         if (entity == null)
             return;
+        float ScaleBodyX = 0;
         float ScaleBodyY = 0;
+        float ScaleArmX = 0;
         float ScaleNeckY = 0;
         float RotationBodyX = 0;
         if (!entity.getEntityData().get(PritchanimalEntity.DATA_isInitialized)) {
             entity.getEntityData().set(PritchanimalEntity.DATA_isInitialized, true);
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Root_y, (int) (((-6) * (1 - (float) (entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Leg_y) / 100))) * 100));
             ScaleNeckY = 0;
+            ScaleBodyX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_x) / 100;
             ScaleBodyY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y) / 100;
+            ScaleArmX = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Arm_x) / 100;
             if (entity.getEntityData().get(PritchanimalEntity.DATA_neck_type) != 0) {
                 ScaleNeckY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Neck_y) / 100;
             }
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_y, (int) ((8 * ScaleNeckY * Math.cos(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100));
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_HeadOffset_z, (int) (((-10) * ScaleNeckY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Neck_x)/10))) * 100));
-            ScaleBodyY = (float) entity.getEntityData().get(PritchanimalEntity.DATA_SCALE_Body_y) / 100;
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_y, (int) ((12 * (ScaleBodyY - 1) - 12 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Head_z, (int) (((-16) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
+            entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_x, (int) ((4 * ScaleBodyX + ScaleArmX - 5)) * 100);
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_y, (int) ((10 * (ScaleBodyY - 1) - 10 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Arm_z, (int) (((-10) * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
             entity.getEntityData().set(PritchanimalEntity.DATA_POSITION_Frontleg_y, (int) ((10 * (ScaleBodyY - 1) - 10 * ScaleBodyY * Math.sin(Math.toRadians((float)entity.getEntityData().get(PritchanimalEntity.DATA_ROTATION_Body_x)/10))) * 100));
@@ -648,7 +667,7 @@ public class PritchanimalEntity extends Animal {
         setBabyHas(PritchanimalEntity.DATA_neck_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_arm_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_leg_type, 0.5, baby, mother, father);
-        setBabyHas(PritchanimalEntity.DATA_tail_type, 0.5, baby, mother, father);
+        setBabyHas(PritchanimalEntity.DATA_skin, 0.5, baby, mother, father);
     }
 
     @Override
