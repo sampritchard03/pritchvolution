@@ -4,6 +4,7 @@ import com.pritchvolution.client.renderer.RandomPritchanimalGeneratorRenderer;
 import com.pritchvolution.init.PritchvolutionEntities;
 import com.pritchvolution.init.PritchvolutionItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +17,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -576,12 +578,16 @@ public class PritchanimalEntity extends Animal {
         }
     }
 
-    public static void setBabyData(EntityDataAccessor<Integer> entityDataAccessor, PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father) {
-        baby.getEntityData().set(entityDataAccessor,
-                (int) (Math.random()
-                        * ((mother.getEntityData().get(entityDataAccessor)
-                        - (father.getEntityData().get(entityDataAccessor))
-                        + (father.getEntityData().get(entityDataAccessor))))));
+    public static void setBabyData(EntityDataAccessor<Integer> entityDataAccessor, PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father, double weirdness) {
+        double randomMutation = Math.random()*(mother.getEntityData().get(entityDataAccessor) - father.getEntityData().get(entityDataAccessor))*weirdness;
+        if (Math.random() < 0.5) randomMutation = -randomMutation;
+        baby.getEntityData().set(entityDataAccessor, (int)(((double) (mother.getEntityData().get(entityDataAccessor) + father.getEntityData().get(entityDataAccessor)) /2)+randomMutation));
+    }
+
+    public static void setBabyAttribute(Holder<Attribute> attribute, PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father, double weirdness) {
+        double randomMutation = Math.random()*(mother.getAttribute(attribute).getBaseValue() - father.getAttribute(attribute).getBaseValue())*weirdness;
+        if (Math.random() < 0.5) randomMutation = -randomMutation;
+        baby.getAttribute(attribute).setBaseValue((double)(((double) (mother.getAttribute(attribute).getBaseValue() + father.getAttribute(attribute).getBaseValue()) /2)+randomMutation));
     }
 
     public static void setBabyHas(EntityDataAccessor entityDataAccessor, double maternalChance, PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father) {
@@ -595,70 +601,67 @@ public class PritchanimalEntity extends Animal {
     public static void setupBaby(PritchanimalEntity baby, PritchanimalEntity mother, PritchanimalEntity father) {
         if (baby == null || mother == null || father == null)
             return;
-        if (baby.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED)) {
-            baby.getAttribute(Attributes.MOVEMENT_SPEED)
-                    .setBaseValue(Math.random()
-                            * ((mother.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? mother.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0)
-                            - (father.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? father.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0))
-                            + (father.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? father.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0));
-        }
-        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Body_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Neck_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Arm_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Body_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Body_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Body_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Head_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Head_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Head_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_POSITION_Ear_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_ROTATION_Flopear_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_z, baby, mother, father);
 
-        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_x, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_y, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_z, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_hue, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_saturation, baby, mother, father);
-        setBabyData(PritchanimalEntity.DATA_brightness, baby, mother, father);
+        double weirdness = 1.02;
+        setBabyAttribute(Attributes.MOVEMENT_SPEED, baby, mother, father, 1.002);
+        setBabyAttribute(Attributes.SCALE, baby, mother, father, 1.02);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Arm_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Leg_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Body_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Neck_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Arm_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Body_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Body_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Body_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Head_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Head_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Head_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Nose_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Snout_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Snout_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Beak_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Ear_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_POSITION_Ear_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Bunnyear_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Flopear_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_ROTATION_Flopear_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Cowhorn_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Coldhorn_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Warmhorn_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Tail_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Dolphintail_z, baby, mother, father, weirdness);
+
+        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_x, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_y, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_SCALE_Neck_z, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_hue, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_saturation, baby, mother, father, weirdness);
+        setBabyData(PritchanimalEntity.DATA_brightness, baby, mother, father, weirdness);
 
         setBabyHas(PritchanimalEntity.DATA_head_type, 0.5, baby, mother, father);
         setBabyHas(PritchanimalEntity.DATA_nose_type, 0.5, baby, mother, father);
